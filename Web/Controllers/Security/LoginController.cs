@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Web.Models.Portal;
 
 namespace Web.Controllers.Security
 {
@@ -13,7 +14,6 @@ namespace Web.Controllers.Security
     {
         private readonly IConfiguration _configuration;
 
-        static HttpClient client = new HttpClient();
         public LoginController(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -39,7 +39,7 @@ namespace Web.Controllers.Security
             }
 
         }
-
+       
         public async Task<IActionResult> getEmpresas()
         {
             try

@@ -7037,11 +7037,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\Web\\Web.csproj",
+      "projectUniqueName": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\Web\\Web.csproj",
+      "projectPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
       "packagesPath": "C:\\Users\\Luan\\.nuget\\packages\\",
-      "outputPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\Web\\obj\\",
+      "outputPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Luan\\AppData\\Roaming\\NuGet\\NuGet.Config",
