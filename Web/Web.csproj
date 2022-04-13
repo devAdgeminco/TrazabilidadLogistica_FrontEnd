@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Portal\" />
+    <Folder Include="Controllers\Security\" />
     <Folder Include="Helper\" />
     <Folder Include="wwwroot\assets\plugins\js-cookie\dist\" />
     <Folder Include="wwwroot\assets\plugins\swiper\angular\" />

@@ -7,11 +7,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Web.Models.Portal;
+using Web.Models.Seguridad;
 
 namespace Web.Controllers.Security
 {
+    //[Area("Security")]
     public class LoginController : Controller
     {
+
         private readonly IConfiguration _configuration;
 
         public LoginController(IConfiguration configuration)
@@ -23,15 +26,23 @@ namespace Web.Controllers.Security
             return View();
         }
         
-        [HttpPost]
-        public async Task<IActionResult> Authenticate()
+        public async Task<IActionResult> Authenticate(Login login)
         {
             try
             {
+                var httpClient = new HttpClient();
                 var api = _configuration["Api:root"];
-                var data = await new HttpRestClientServices<string>().GetAsync(api + "User/login");
 
-                return Ok(new { value = data, status = true });
+                List<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>();
+
+                queries.Add(new KeyValuePair<string, string>("login", login.User));
+                queries.Add(new KeyValuePair<string, string>("CodEmpresa", login.Company.ToString()));
+
+                HttpContent httpContent = new FormUrlEncodedContent(queries);
+
+                var response = await httpClient.PostAsync(api + "User/login", httpContent);
+                var sResponse = await response.Content.ReadAsStringAsync();
+                return Ok(new { value = sResponse, status = true });
             }
             catch (Exception ex)
             {
@@ -39,8 +50,9 @@ namespace Web.Controllers.Security
             }
 
         }
-       
-        public async Task<IActionResult> getEmpresas()
+
+
+        public async Task<IActionResult> GetCompanies()
         {
             try
             {

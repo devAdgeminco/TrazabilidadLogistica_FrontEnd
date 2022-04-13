@@ -1,10 +1,14 @@
-﻿
+﻿@using Newtonsoft.Json;
 @{
     Layout = null;
+    ViewBag.Modulo = "Autenticacion";
 }
 
 <script>
-    var url_getCompanies = "@Url.Content("~/")" + "Security/Login/getEmpresas";
+    var url_getCompanies = "@Url.Content("~/")" + "Login/GetCompanies";
+    var url_Authenticate = "@Url.Content("~/")" + "Login/Authenticate";
+    var url_main = "@Url.Content("~/")" + "Main/Index";
+    var url_trazabilidad = "@Url.Content("~/")" + "Trazabilidad/Index";
     var api = "https://localhost:44396/api/";
 </script>
 
@@ -12,7 +16,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Color Admin | Login v3</title>
+    <title>Trazabilidad Logistica</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -64,17 +68,18 @@
                 <!-- END login-header -->
                 <!-- BEGIN login-content -->
                 <div class="login-content">
-                    <form action="@Url.Action("Authenticate", "Login")" method="POST" class="fs-13px">
+                    @*<form id="formLogin" action="@Url.Action("Authenticate", "Login")" method="POST" class="fs-13px" enctype="multipart/form-data">*@
+                    <form id="formLogin" class="fs-13px">
                         <div class="form-floating mb-15px">
-                            <input type="text" class="form-control h-45px fs-13px" placeholder="Email Address" id="emailAddress" />
-                            <label for="emailAddress" class="d-flex align-items-center fs-13px text-gray-600">Email Address</label>
+                            <input type="text" class="form-control h-45px fs-13px" placeholder="Email Address" id="User" name="User" />
+                            <label for="User" class="d-flex align-items-center fs-13px text-gray-600">Usuario</label>
                         </div>
                         <div class="form-floating mb-15px">
-                            <input type="password" class="form-control h-45px fs-13px" placeholder="Contraseña" id="password" />
-                            <label for="Contraseña" class="d-flex align-items-center fs-13px text-gray-600">Password</label>
+                            <input type="password" class="form-control h-45px fs-13px" placeholder="Contraseña" id="Contrasena" name="Contrasena"/>
+                            <label for="Contrasena" class="d-flex align-items-center fs-13px text-gray-600">Contraseña</label>
                         </div>
                         <div class="form-floating mb-15px">
-                            <select id="Company" class="form-select form-select-sm" style="height: calc(2.5rem + 2px);padding-top: 0.625rem;"></select>
+                            <select id="Company" class="form-select form-select-sm" style="height: calc(2.5rem + 2px);padding-top: 0.625rem;" name="Company"></select>
                         </div>
 
                         <div class="form-check mb-30px">
@@ -84,7 +89,7 @@
                             </label>
                         </div>
                         <div class="mb-15px">
-                            <button type="submit" class="btn btn-success d-block h-45px w-100 btn-lg fs-14px">Iniciar Sesion</button>
+                            <button id="btnLogin" type="button" class="btn btn-success d-block h-45px w-100 btn-lg fs-14px">Iniciar Sesion</button>
                         </div>
                         @*<div class="mb-40px pb-40px text-dark">
                                 Not a member yet? Click <a href="register_v3.html" class="text-primary">here</a> to register.
