@@ -59,6 +59,7 @@
                                 ls[i].C5_CRFTDOC,
                                 ls[i].C5_CRFNDOC,
                                 ls[i].C5_CNUMORD,
+                                ls[i].OC_CCOTIZA,
                             '<button type="button" dataId="' + ls[i].C5_CNUMDOC + '" class="btn btn-primary btn-xs getDetalle" data-bs-toggle="modal" data-bs-target="#mDetalle"><i class="fas fa-book fa-sm"></i></button>'
                         ]);
                     }
@@ -70,12 +71,13 @@
                         data: dataSet,
                         columns: [
                             { title: "CTD" },
-                            { title: "N°" },
+                            { title: "N° Parte Entrada" },
                             { title: "Descripcion" },
                             { title: "Fecha" },
                             { title: "FTDOC" },
                             { title: "FNDOC" },
-                            { title: "N° Ord" },
+                            { title: "N° OC" },
+                            { title: "Requerimiento" },
                             { title: "Acciones" }
                         ],
                         language: {

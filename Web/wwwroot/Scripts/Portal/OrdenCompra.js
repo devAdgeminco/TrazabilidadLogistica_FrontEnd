@@ -57,6 +57,7 @@
                             ls[i].OC_CCODPRO,
                             ls[i].OC_CRAZSOC,
                             ls[i].ESTADO,
+                            ls[i].OC_CCOTIZA,
                             '<button type="button" dataId="' + ls[i].OC_CNUMORD + '" class="btn btn-primary btn-xs getDetalle" data-bs-toggle="modal" data-bs-target="#mDetalle"><i class="fas fa-book fa-sm"></i></button>'
                         ]);
                     }
@@ -67,11 +68,12 @@
                         destroy: true,
                         data: dataSet,
                         columns: [
-                            { title: "Nº" },
+                            { title: "Nº OC" },
                             { title: "Fecha" },
                             { title: "CodProd" },
                             { title: "Razon Social" },
                             { title: "Estado" },
+                            { title: "Requerimiento" },
                             { title: "Accion" }
                         ],
                         language: {
