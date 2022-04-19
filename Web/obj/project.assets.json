@@ -7032,24 +7032,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DRX7\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Luan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Adgeminco\\Developer\\GIT\\TrazabilidadLogistica\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
+      "projectUniqueName": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "D:\\Adgeminco\\Developer\\GIT\\TrazabilidadLogistica\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
-      "packagesPath": "C:\\Users\\DRX7\\.nuget\\packages\\",
-      "outputPath": "D:\\Adgeminco\\Developer\\GIT\\TrazabilidadLogistica\\TrazabilidadLogistica_FrontEnd\\Web\\obj\\",
+      "projectPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
+      "packagesPath": "C:\\Users\\Luan\\.nuget\\packages\\",
+      "outputPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\DRX7\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Luan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7102,7 +7097,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

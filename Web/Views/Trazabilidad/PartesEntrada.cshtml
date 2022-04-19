@@ -1,14 +1,16 @@
-﻿@{
-    ViewBag.Title = "Trazabilidad";
-    ViewBag.Modulo = "Requerimientos";
+﻿
+@{
+    ViewData["Title"] = "Trazabilidad";
+    ViewData["Modulo"] = "PartesEntrada";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <script>
-    var url_getRequerimientos = "@Url.Content("~/")" + "Trazabilidad/getRequerimientos";
-    var url_getRequerimientoDetalle = "@Url.Content("~/")" + "Trazabilidad/getRequerimientoDetalle";
+    var url_getPartesEntrada = "@Url.Content("~/")" + "Trazabilidad/getPartesEntrada";
+    var url_getPartesEntradaDetalle = "@Url.Content("~/")" + "Trazabilidad/getPartesEntradaDetalle";
 </script>
 
-<table id="tRequerimientos" class="table table-striped" style="width:100%"></table>
+<table id="tPE" class="table table-striped" style="width:100%"></table>
 
 
 <div class="modal fade" id="mDetalle" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -19,7 +21,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="tRequerimientosDetalle" class="table table-striped" style="width:100%"></table>
+                <table id="tPEDetalle" class="table table-striped" style="width:100%"></table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -29,7 +31,9 @@
     </div>
 </div>
 
+
 @section Scripts
 {
-    <script src="@Url.Content("~/Scripts/Portal/trazabilidad.js")"></script>
+    <script src="@Url.Content("~/Scripts/Portal/ParteEntrada.js")"></script>
 }
+

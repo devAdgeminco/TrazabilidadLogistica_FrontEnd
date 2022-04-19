@@ -22,6 +22,16 @@ namespace Web.Controllers
             return View();
         }
 
+        public IActionResult OrdenCompra()
+        {
+            return View();
+        }
+
+        public IActionResult PartesEntrada()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> getRequerimientos(DateTime fecIni, DateTime fecFin)
         {
             try
@@ -53,6 +63,84 @@ namespace Web.Controllers
             {
                 var api = _configuration["Api:root"];
                 var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getRequerimientoDetalle", new { idReq = idReq });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getOrdenCompra(DateTime fecIni, DateTime fecFin)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var api = _configuration["Api:root"];
+
+                List<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>();
+
+                queries.Add(new KeyValuePair<string, string>("fecIni", fecIni.ToString()));
+                queries.Add(new KeyValuePair<string, string>("fecFin", fecFin.ToString()));
+
+                HttpContent httpContent = new FormUrlEncodedContent(queries);
+
+                var response = await httpClient.PostAsync(api + "Requerimiento/getOrdenCompra", httpContent);
+                var data = await response.Content.ReadAsStringAsync();
+
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getOrdenCompraDetalle(string id)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getOrdenCompraDetalle", new { id = id });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getPartesEntrada(DateTime fecIni, DateTime fecFin)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var api = _configuration["Api:root"];
+
+                List<KeyValuePair<string, string>> queries = new List<KeyValuePair<string, string>>();
+
+                queries.Add(new KeyValuePair<string, string>("fecIni", fecIni.ToString()));
+                queries.Add(new KeyValuePair<string, string>("fecFin", fecFin.ToString()));
+
+                HttpContent httpContent = new FormUrlEncodedContent(queries);
+
+                var response = await httpClient.PostAsync(api + "Requerimiento/getPartesEntrada", httpContent);
+                var data = await response.Content.ReadAsStringAsync();
+
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getPartesEntradaDetalle(string id)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getPartesEntradaDetalle", new { id = id });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>ADG Integrado | Trazabilidad Logística</title>
+    <title>@ViewData["Title"] - ADG Integrado | Trazabilidad Logística</title>
     <link rel="icon" href="~/Assets/img/logo/logo2.png" type="image/png" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="~/assets/css/vendor.min.css" rel="stylesheet" />
     <link href="~/assets/css/default/app.min.css" rel="stylesheet" />
+    <link href="~/assets/css/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
 </head>
 
@@ -27,7 +28,7 @@
         <div id="header" class="app-header">
             <!-- BEGIN navbar-header -->
             <div class="navbar-header">
-                <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>ADG</b> iNTEGRADO</a>
+                <a href="index.html" class="navbar-brand"><img src="~/assets/img/logo/logo2.png" /><b>ADG</b> iNTEGRADO</a>
                 <button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -38,15 +39,15 @@
             <!-- BEGIN header-nav -->
             <div class="navbar-nav">
                 <div class="navbar-item navbar-form">
-                    <form action="" method="POST" name="search">
+                    @*<form action="" method="POST" name="search">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Buscar" />
                             <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                         </div>
-                    </form>
+                    </form>*@
                 </div>
                 <div class="navbar-item dropdown">
-                    <a href="#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle fs-14px">
+                    @*<a href="#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle fs-14px">
                         <i class="fa fa-bell"></i>
                         <span class="badge">0</span>
                     </a>
@@ -55,25 +56,25 @@
                         <div class="text-center w-300px py-3">
                             No notification found
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="navbar-item navbar-user dropdown">
                     <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                         <div class="image image-icon bg-gray-800 text-gray-600">
                             <i class="fa fa-user"></i>
                         </div>
-                        <span class="d-none d-md-inline">Logistic User</span> <b class="caret ms-10px"></b>
+                        <span class="d-none d-md-inline">Usuario</span> <b class="caret ms-10px"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end me-1">
-                        <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+                        @*<a href="javascript:;" class="dropdown-item">Edit Profile</a>
                         <a href="javascript:;" class="dropdown-item d-flex align-items-center">
                             Inbox
                             <span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
                         </a>
                         <a href="javascript:;" class="dropdown-item">Calendar</a>
                         <a href="javascript:;" class="dropdown-item">Setting</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="javascript:;" class="dropdown-item">Log Out</a>
+                        <div class="dropdown-divider"></div>*@
+                        <a href="javascript:;" class="dropdown-item">Cerrar Sesion</a>
                     </div>
                 </div>
             </div>
@@ -95,15 +96,15 @@
                             <div class="menu-profile-info">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        Sean Ngu
+                                        Usuario
                                     </div>
                                     <div class="menu-caret ms-auto"></div>
                                 </div>
-                                <small>Front end developer</small>
+                                <small>Logistica</small>
                             </div>
                         </a>
                     </div>
-                    <div id="appSidebarProfileMenu" class="collapse">
+                    @*<div id="appSidebarProfileMenu" class="collapse">
                         <div class="menu-item pt-5px">
                             <a href="javascript:;" class="menu-link">
                                 <div class="menu-icon"><i class="fa fa-cog"></i></div>
@@ -123,48 +124,41 @@
                             </a>
                         </div>
                         <div class="menu-divider m-0"></div>
-                    </div>
-                    <div class="menu-header">Navigation</div>
-                    <div class="menu-item active">
-                        <a href="index.html" class="menu-link">
+                    </div>*@
+                    <div class="menu-header">Menu</div>
+                    <div class="menu-item @(ViewBag.Modulo == "Inicio" ? "active" : "")">
+                        <a href='@Url.Content("~/")Home/Index' class="menu-link">
                             <div class="menu-icon">
                                 <i class="fa fa-sitemap"></i>
                             </div>
-                            <div class="menu-text">Home</div>
+                            <div class="menu-text">Inicio</div>
                         </a>
                     </div>
 
-                    <div class="menu-item has-sub">
+                    <div class="menu-item has-sub menuTrazabilidad">
                         <a href="javascript:;" class="menu-link">
                             <div class="menu-icon">
                                 <i class="fa fa-align-left"></i>
                             </div>
-                            <div class="menu-text">Menu Level</div>
+                            <div class="menu-text">Trazabilidad Logistica</div>
                             <div class="menu-caret"></div>
                         </a>
-                        <div class="menu-submenu">
-                            <div class="menu-item has-sub">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-text">Menu 1.1</div>
-                                    <div class="menu-caret"></div>
+                        <div class="menu-submenu submenuTrazabilidad">
+                            <div class="menu-item @(ViewBag.Modulo == "Requerimientos" ? "active" : "")">
+                                <a href='@Url.Content("~/")Trazabilidad/Index' class="menu-link">
+                                    <div class="menu-text">Requerimientos</div>
                                 </a>
-                                <div class="menu-submenu">
-                                    <div class="menu-item has-sub">
-                                        <a href="javascript:;" class="menu-link">
-                                            <div class="menu-text">Menu 2.1</div>
-                                            <div class="menu-caret"></div>
-                                        </a>
-                                        <div class="menu-submenu">
-                                            <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 3.1</div></a></div>
-                                            <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 3.2</div></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 2.2</div></a></div>
-                                    <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 2.3</div></a></div>
-                                </div>
                             </div>
-                            <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 1.2</div></a></div>
-                            <div class="menu-item"><a href="javascript:;" class="menu-link"><div class="menu-text">Menu 1.3</div></a></div>
+                            <div class="menu-item @(ViewBag.Modulo == "OrdenCompra" ? "active" : "")">
+                                <a href='@Url.Content("~/")Trazabilidad/OrdenCompra' class="menu-link">
+                                    <div class="menu-text">Orden de Compra</div>
+                                </a>
+                            </div>
+                            <div class="menu-item @(ViewBag.Modulo == "PartesEntrada" ? "active" : "")">
+                                <a href='@Url.Content("~/")Trazabilidad/PartesEntrada' class="menu-link">
+                                    <div class="menu-text">Partes de Entrada</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -185,24 +179,24 @@
         <!-- BEGIN #content -->
         <div id="content" class="app-content">
             <!-- BEGIN breadcrumb -->
-            <ol class="breadcrumb float-xl-end">
+            @*<ol class="breadcrumb float-xl-end">
                 <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
                 <li class="breadcrumb-item active">Data</li>
-            </ol>
+            </ol>*@
             <!-- END breadcrumb -->
             <!-- BEGIN page-header -->
-            <h1 class="page-header">Page Header <small>header small text goes here...</small></h1>
+            <h1 class="page-header">@ViewData["Title"] <small></small></h1>
             <!-- END page-header -->
             <!-- BEGIN panel -->
             <div class="panel panel-inverse">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Panel Title here</h4>
+                    <h4 class="panel-title">@ViewData["Modulo"]</h4>
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
+                        @*<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>*@
                     </div>
                 </div>
                 <div class="panel-body">
@@ -220,6 +214,8 @@
     <!-- ================== BEGIN core-js ================== -->
     <script src="~/assets/js/vendor.min.js"></script>
     <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/js/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/datatables/dataTables.bootstrap5.min.js"></script>
     @RenderSection("Scripts", false/*required*/)
     <!-- ================== END core-js ================== -->
 

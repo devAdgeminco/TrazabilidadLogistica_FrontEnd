@@ -462,3 +462,5 @@ D:\Adgeminco\Developer\GIT\TrazabilidadLogistica\TrazabilidadLogistica_FrontEnd\
 D:\Adgeminco\Developer\GIT\TrazabilidadLogistica\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.dll
 D:\Adgeminco\Developer\GIT\TrazabilidadLogistica\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.pdb
 D:\Adgeminco\Developer\GIT\TrazabilidadLogistica\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.genruntimeconfig.cache
+E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Razor\Views\Trazabilidad\OrdenCompra.cshtml.g.cs
+E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Razor\Views\Trazabilidad\PartesEntrada.cshtml.g.cs

@@ -8,22 +8,36 @@
             $(".menuTrazabilidad").addClass("expand");
             $(".submenuTrazabilidad").css("display", "block");
 
-            dsh.GetRequerimientos();
+            dsh.GetPartesEntrada();
             $(document).on("click", ".getDetalle", function () {
-                var idCotizacion = $(this).attr('dataId');
-                console.log(idCotizacion);
-                dsh.GetRequerimientoDetalle(idCotizacion);
+                var id = $(this).attr('dataId');
+                console.log(id);
+                dsh.GetPartesEntradaDetalle(id);
             });
-
-            //$('#example').DataTable();
         },
 
-        GetRequerimientos() {
+        getDate(dateObject) {
+            var d = new Date(dateObject);
+            var day = d.getDate();
+            var month = d.getMonth() + 1;
+            var year = d.getFullYear();
+            if (day < 10) {
+                day = "0" + day;
+            }
+            if (month < 10) {
+                month = "0" + month;
+            }
+            var date = day + "/" + month + "/" + year;
+
+            return date;
+        },
+
+        GetPartesEntrada() {
             $.ajax({
 
                 cache: false,
                 async: true,
-                url: url_getRequerimientos,
+                url: url_getPartesEntrada,
                 type: "GET",
                 data: {
                     fecIni: new Date("01-01-2022").toUTCString(),
@@ -32,35 +46,37 @@
                 datatype: false,
                 contentType: false,
                 success: function (data) {
-                    
-                    var ls = JSON.parse(data.value).requerimientos;
+
+                    var ls = JSON.parse(data.value).partesEntrada;
 
                     //console.log(ls);
                     dataSet = [];
                     for (var i = 0; i < ls.length; i++) {
-                        dataSet.push([ls[i].RC_CNROREQ,
-                        dsh.getDate(ls[i].RC_DFECREQ),
-                                    ls[i].RC_PRIOR,
-                                    ls[i].TG_CDESCRI,
-                                    dsh.getDate(ls[i].RC_DFECA01),
-                                    ls[i].RC_CNUMORD,
-                            '<button type="button" dataId="' + ls[i].RC_CNROREQ + '" class="btn btn-primary btn-xs getDetalle" data-bs-toggle="modal" data-bs-target="#mDetalle"><i class="fas fa-book fa-sm"></i></button>'
+                        dataSet.push([ls[i].C5_CTD,
+                                ls[i].C5_CNUMDOC,
+                                ls[i].A1_CDESCRI,
+                                ls[i].C5_DFECDOC,
+                                ls[i].C5_CRFTDOC,
+                                ls[i].C5_CRFNDOC,
+                                ls[i].C5_CNUMORD,
+                            '<button type="button" dataId="' + ls[i].C5_CNUMDOC + '" class="btn btn-primary btn-xs getDetalle" data-bs-toggle="modal" data-bs-target="#mDetalle"><i class="fas fa-book fa-sm"></i></button>'
                         ]);
                     }
                     //console.log('dataSet');
                     //console.log(dataSet);
 
-                    $('#tRequerimientos').DataTable({
+                    $('#tPE').DataTable({
                         destroy: true,
                         data: dataSet,
                         columns: [
-                            { title: "Nº" },
+                            { title: "CTD" },
+                            { title: "N°" },
+                            { title: "Descripcion" },
                             { title: "Fecha" },
-                            { title: "Prioridad" },
-                            { title: "Estado" },
-                            { title: "Fecha Estado" },
-                            { title: "Nº OC" },
-                            { title: "Accion" }
+                            { title: "FTDOC" },
+                            { title: "FNDOC" },
+                            { title: "N° Ord" },
+                            { title: "Acciones" }
                         ],
                         language: {
                             "processing": "Procesando...",
@@ -90,9 +106,6 @@
                             "lengthMenu": "Mostrar _MENU_ entradas",
                         }
                     });
-
-                    //$('#tRequerimientos').DataTable().destroy();
-                    //$('#tRequerimientos').DataTable();
                 },
                 error: function () {
                     console.log("Error");
@@ -100,63 +113,39 @@
             });
         },
 
-        getDate(dateObject) {
-            var d = new Date(dateObject);
-            var day = d.getDate();
-            var month = d.getMonth() + 1;
-            var year = d.getFullYear();
-            if (day < 10) {
-                day = "0" + day;
-            }
-            if (month < 10) {
-                month = "0" + month;
-            }
-            var date = day + "/" + month + "/" + year;
-
-            return date;
-        },
-
-        GetRequerimientoDetalle(idReq) {
+        GetPartesEntradaDetalle(id) {
             $.ajax({
 
                 cache: false,
                 async: true,
-                url: url_getRequerimientoDetalle,
+                url: url_getPartesEntradaDetalle,
                 type: "POST",
                 data: {
-                    idReq: idReq
+                    id: id
                 },
                 success: function (data) {
                     console.log(data.value);
 
-                    var ls = JSON.parse(data.value).requerimientoDetalle;
+                    var ls = JSON.parse(data.value).parteEntraDetalle;
 
                     //console.log(ls);
                     dataSet = [];
                     for (var i = 0; i < ls.length; i++) {
-                        dataSet.push([ls[i].RD_CNROREQ,
-                            ls[i].RD_CITEM,
-                            ls[i].RD_CCODIGO,
-                            ls[i].RD_CDESCRI,
-                            ls[i].RD_CUNID,
-                            ls[i].RD_NQPEDI,
-                            ls[i].RD_CCENCOS
+                        dataSet.push([ls[i].C6_CITEM,
+                            ls[i].C6_CCODIGO,
+                            ls[i].C6_CDESCRI,
+                            ls[i].C6_NCANTID
                         ]);
                     }
-                    //console.log('dataSet');
-                    //console.log(dataSet);
 
-                    $('#tRequerimientosDetalle').DataTable({
+                    $('#tPEDetalle').DataTable({
                         destroy: true,
                         data: dataSet,
                         columns: [
-                            { title: "Nº Req" },
                             { title: "Item" },
                             { title: "Codigo" },
                             { title: "Descripcion" },
-                            { title: "UN" },
-                            { title: "QPEDI" },
-                            { title: "CENCOS" }
+                            { title: "Cantidad" }
                         ],
                         language: {
                             "processing": "Procesando...",
@@ -200,6 +189,3 @@
 
     dsh.init();
 });
-
-
-
