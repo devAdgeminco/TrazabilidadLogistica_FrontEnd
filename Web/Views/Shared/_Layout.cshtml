@@ -13,7 +13,14 @@
     <link href="~/assets/css/vendor.min.css" rel="stylesheet" />
     <link href="~/assets/css/default/app.min.css" rel="stylesheet" />
     <link href="~/assets/css/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
     <!-- ================== END core-css ================== -->
+    <script>
+        var URL_CERRARSESION = "@Url.Content("~/")" + "Login/CerrarSesion";
+        var URL_AUTENTICACION = "@Url.Content("~/")"+ "Login/Index";
+    </script>
 </head>
 
 <body>
@@ -40,41 +47,41 @@
             <div class="navbar-nav">
                 <div class="navbar-item navbar-form">
                     @*<form action="" method="POST" name="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar" />
-                            <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                        </div>
-                    </form>*@
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar" />
+                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>*@
                 </div>
                 <div class="navbar-item dropdown">
                     @*<a href="#" data-bs-toggle="dropdown" class="navbar-link dropdown-toggle fs-14px">
-                        <i class="fa fa-bell"></i>
-                        <span class="badge">0</span>
-                    </a>
-                    <div class="dropdown-menu media-list dropdown-menu-end">
-                        <div class="dropdown-header">NOTIFICATIONS (0)</div>
-                        <div class="text-center w-300px py-3">
-                            No notification found
-                        </div>
-                    </div>*@
+                            <i class="fa fa-bell"></i>
+                            <span class="badge">0</span>
+                        </a>
+                        <div class="dropdown-menu media-list dropdown-menu-end">
+                            <div class="dropdown-header">NOTIFICATIONS (0)</div>
+                            <div class="text-center w-300px py-3">
+                                No notification found
+                            </div>
+                        </div>*@
                 </div>
                 <div class="navbar-item navbar-user dropdown">
                     <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                         <div class="image image-icon bg-gray-800 text-gray-600">
                             <i class="fa fa-user"></i>
                         </div>
-                        <span class="d-none d-md-inline">Usuario</span> <b class="caret ms-10px"></b>
+                        <span class="d-none d-md-inline">@ViewBag.UsuarioLogueado.NombreCompleto</span> <b class="caret ms-10px"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end me-1">
                         @*<a href="javascript:;" class="dropdown-item">Edit Profile</a>
-                        <a href="javascript:;" class="dropdown-item d-flex align-items-center">
-                            Inbox
-                            <span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
-                        </a>
-                        <a href="javascript:;" class="dropdown-item">Calendar</a>
-                        <a href="javascript:;" class="dropdown-item">Setting</a>
-                        <div class="dropdown-divider"></div>*@
-                        <a href="javascript:;" class="dropdown-item">Cerrar Sesion</a>
+                            <a href="javascript:;" class="dropdown-item d-flex align-items-center">
+                                Inbox
+                                <span class="badge bg-danger rounded-pill ms-auto pb-4px">2</span>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">Calendar</a>
+                            <a href="javascript:;" class="dropdown-item">Setting</a>
+                            <div class="dropdown-divider"></div>*@
+                        <a id="buttonCerrarSesion" href="" class="dropdown-item">Cerrar Sesion</a>
                     </div>
                 </div>
             </div>
@@ -96,35 +103,35 @@
                             <div class="menu-profile-info">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        Usuario
+                                        @ViewBag.UsuarioLogueado.NombreCompleto
                                     </div>
                                     <div class="menu-caret ms-auto"></div>
                                 </div>
-                                <small>Logistica</small>
+                                <small>@ViewBag.UsuarioLogueado.TipoUsuarioMa</small>
                             </div>
                         </a>
                     </div>
                     @*<div id="appSidebarProfileMenu" class="collapse">
-                        <div class="menu-item pt-5px">
-                            <a href="javascript:;" class="menu-link">
-                                <div class="menu-icon"><i class="fa fa-cog"></i></div>
-                                <div class="menu-text">Settings</div>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="javascript:;" class="menu-link">
-                                <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-                                <div class="menu-text"> Send Feedback</div>
-                            </a>
-                        </div>
-                        <div class="menu-item pb-5px">
-                            <a href="javascript:;" class="menu-link">
-                                <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
-                                <div class="menu-text"> Helps</div>
-                            </a>
-                        </div>
-                        <div class="menu-divider m-0"></div>
-                    </div>*@
+                            <div class="menu-item pt-5px">
+                                <a href="javascript:;" class="menu-link">
+                                    <div class="menu-icon"><i class="fa fa-cog"></i></div>
+                                    <div class="menu-text">Settings</div>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="javascript:;" class="menu-link">
+                                    <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
+                                    <div class="menu-text"> Send Feedback</div>
+                                </a>
+                            </div>
+                            <div class="menu-item pb-5px">
+                                <a href="javascript:;" class="menu-link">
+                                    <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
+                                    <div class="menu-text"> Helps</div>
+                                </a>
+                            </div>
+                            <div class="menu-divider m-0"></div>
+                        </div>*@
                     <div class="menu-header">Menu</div>
                     <div class="menu-item @(ViewBag.Modulo == "Inicio" ? "active" : "")">
                         <a href='@Url.Content("~/")Home/Index' class="menu-link">
@@ -180,10 +187,10 @@
         <div id="content" class="app-content">
             <!-- BEGIN breadcrumb -->
             @*<ol class="breadcrumb float-xl-end">
-                <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
-                <li class="breadcrumb-item active">Data</li>
-            </ol>*@
+                    <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:;">Library</a></li>
+                    <li class="breadcrumb-item active">Data</li>
+                </ol>*@
             <!-- END breadcrumb -->
             <!-- BEGIN page-header -->
             <h1 class="page-header">@ViewData["Title"] <small></small></h1>
@@ -194,9 +201,9 @@
                     <h4 class="panel-title">@ViewData["Modulo"]</h4>
                     <div class="panel-heading-btn">
                         @*<a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>*@
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-success" data-toggle="panel-reload"><i class="fa fa-redo"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-warning" data-toggle="panel-collapse"><i class="fa fa-minus"></i></a>
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-danger" data-toggle="panel-remove"><i class="fa fa-times"></i></a>*@
                     </div>
                 </div>
                 <div class="panel-body">
@@ -216,6 +223,12 @@
     <script src="~/assets/js/app.min.js"></script>
     <script src="~/assets/js/datatables/jquery.dataTables.min.js"></script>
     <script src="~/assets/js/datatables/dataTables.bootstrap5.min.js"></script>
+    <script src="~/assets/plugins/moment/min/moment.min.js"></script>
+    <script src="~/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="~/assets/plugins/parsleyjs/dist/parsley.min.js"></script>
+
+    <script src="~/Scripts/Layout/Layout.js"></script>
     @RenderSection("Scripts", false/*required*/)
     <!-- ================== END core-js ================== -->
 

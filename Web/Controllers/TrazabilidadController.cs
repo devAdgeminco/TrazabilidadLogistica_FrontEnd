@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Web.Controllers.Security;
 
 namespace Web.Controllers
 {
-    public class TrazabilidadController : Controller
+    public class TrazabilidadController : BaseController
     {
         private readonly IConfiguration _configuration;
 

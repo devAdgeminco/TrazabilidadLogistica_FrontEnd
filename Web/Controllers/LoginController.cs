@@ -1,21 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CSS.Proveedores.Libreria.Seguridad;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PE_AAUDIT_ACL_WEB.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Web.Controllers.Security;
 using Web.Models.Portal;
 using Web.Models.Seguridad;
+using static Web.Models.Seguridad.User;
 
-namespace Web.Controllers.Security
+namespace Web.Controllers
 {
     //[Area("Security")]
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
 
         private readonly IConfiguration _configuration;
+
+        public object DatetimeHelper { get; private set; }
 
         public LoginController(IConfiguration configuration)
         {
@@ -30,6 +40,14 @@ namespace Web.Controllers.Security
         {
             try
             {
+                if (login.User == "" || login.User == null)
+                {
+                    throw new Exception("Usuario no valido");
+                }
+                if (login.Contrasena == "" || login.Contrasena == null)
+                {
+                    throw new Exception("Contraseña no valida");
+                }
                 var httpClient = new HttpClient();
                 var api = _configuration["Api:root"];
 
@@ -42,6 +60,53 @@ namespace Web.Controllers.Security
 
                 var response = await httpClient.PostAsync(api + "User/login", httpContent);
                 var sResponse = await response.Content.ReadAsStringAsync();
+                
+                JObject jusuario = JObject.Parse(sResponse);
+                if (jusuario["login"].Count() == 0)
+                {
+                    throw new Exception("Usuario no se encuentra registrado");
+                }
+
+                UserLoginAPI _UserLoginAPI = new UserLoginAPI() { 
+                    CodUsuario = (int?)jusuario["login"][0]["CodUsuario"],
+                    Login = (string)jusuario["login"][0]["Login"],
+                    Nombres = (string)jusuario["login"][0]["Nombres"],
+                    Apellidos = (string)jusuario["login"][0]["Apellidos"],
+                    NombreCompleto = (string)jusuario["login"][0]["NombreCompleto"],
+                    CodEmpresa = (int?)jusuario["login"][0]["CodEmpresa"],
+                    TipoUsuarioMa = (string)jusuario["login"][0]["TipoUsuarioMa"],
+                    Activo = (bool)jusuario["login"][0]["Activo"],
+                    ActivoLogueo = (bool)jusuario["login"][0]["ActivoLogueo"],
+                    CodUsuarioIngreso = (int?)jusuario["login"][0]["CodUsuarioIngreso"],
+                    FechaIngreso = (DateTime?)jusuario["login"][0]["FechaIngreso"],
+                    CodUsuarioActualizacion = (int?)jusuario["login"][0]["CodUsuarioActualizacion"],
+                    FechaActualizacion = (DateTime?)jusuario["login"][0]["FechaActualizacion"],
+                    Token = (string)jusuario["token"]
+                };
+
+                var contrasena = (string)jusuario["login"][0]["Clave"];
+                string pswd = Encryptor.Encriptar(login.Contrasena.Trim());
+                if (contrasena != pswd)
+                {
+                    throw new Exception("Contraseña incorrecta");
+                }
+
+                UserLogueado usuarioLogueado = JsonConvert.SerializeObject(_UserLoginAPI);
+
+                List<Claim> lstClaim = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, usuarioLogueado)
+                };
+
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(lstClaim, CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
+                    new AuthenticationProperties
+                    {
+                        IsPersistent = false,
+                        ExpiresUtc = DateTime.Now.AddDays(100)
+                    });
+
+
                 return Ok(new { value = sResponse, status = true });
             }
             catch (Exception ex)
@@ -49,6 +114,13 @@ namespace Web.Controllers.Security
                 return BadRequest(new { value = ex.Message, status = false });
             }
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CerrarSesion()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Ok(new { value = "", status = true });
         }
 
 

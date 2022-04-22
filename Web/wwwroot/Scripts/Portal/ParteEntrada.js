@@ -7,6 +7,12 @@
         evento() {
             $(".menuTrazabilidad").addClass("expand");
             $(".submenuTrazabilidad").css("display", "block");
+            $("#fecIni").val(dsh.formatDate(dsh.sumarDias(new Date(), -90)));
+            $("#fecFin").val(dsh.formatDate(new Date()));
+
+            $("#btnBuscar").on("click", function () {
+                dsh.GetPartesEntrada();
+            });
 
             dsh.GetPartesEntrada();
             $(document).on("click", ".getDetalle", function () {
@@ -14,6 +20,23 @@
                 console.log(id);
                 dsh.GetPartesEntradaDetalle(id);
             });
+        },
+
+        sumarDias(fecha, dias) {
+            fecha.setDate(fecha.getDate() + dias);
+            return fecha;
+        },
+
+        padTo2Digits(num) {
+            return num.toString().padStart(2, '0');
+        },
+
+        formatDate(date) {
+            return [
+                date.getFullYear(),
+                dsh.padTo2Digits(date.getMonth() + 1),
+                dsh.padTo2Digits(date.getDate()),
+            ].join('-');
         },
 
         getDate(dateObject) {
@@ -33,6 +56,9 @@
         },
 
         GetPartesEntrada() {
+            var fecIni = $("#fecIni").val();
+            var fecFin = $("#fecFin").val();
+
             $.ajax({
 
                 cache: false,
@@ -40,8 +66,8 @@
                 url: url_getPartesEntrada,
                 type: "GET",
                 data: {
-                    fecIni: new Date("01-01-2022").toUTCString(),
-                    fecFin: new Date("04-01-2022").toUTCString()
+                    fecIni: fecIni,
+                    fecFin: fecFin
                 },
                 datatype: false,
                 contentType: false,

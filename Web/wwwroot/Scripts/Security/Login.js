@@ -27,17 +27,25 @@
                 url: url_Authenticate,
                 type: "POST",
                 data: formData,
-                processData: false, 
+                processData: false,
                 contentType: false,
                 success: function (data) {
-                    console.log(data);
-
+                    dsh.alerts('Correcto!!', 'success');
                     window.location.href = url_trazabilidad;
                 },
-                error: function () {
-                    console.log("Error");
+                error: function (data) {
+                    dsh.alerts(data.responseJSON.value,'danger');
                 }
             });
+        },
+
+        alerts(mensaje, type) {
+            $('#liveAlertPlaceholder').html('');
+            var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + mensaje + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+
+            alertPlaceholder.append(wrapper);
         },
 
         GetCompanies() {

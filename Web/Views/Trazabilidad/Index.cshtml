@@ -7,8 +7,36 @@
     var url_getRequerimientos = "@Url.Content("~/")" + "Trazabilidad/getRequerimientos";
     var url_getRequerimientoDetalle = "@Url.Content("~/")" + "Trazabilidad/getRequerimientoDetalle";
 </script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <div class="mb-3">
+                <label for="fecIni" class="form-label">Fecha Inicial</label>
+                <input type="date" class="form-control" id="fecIni" autocomplete="off" />
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="mb-3">
+                <label for="fecFin" class="form-label">Fecha Final</label>
+                <input type="date" class="form-control" id="fecFin" autocomplete="off" />
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="mb-3">
+                <label for="btnBuscar" class="form-label">&nbsp;</label>
+                <button id="btnBuscar" type="button" class="form-control btn btn-primary">
+                    <i class="ion ion-md-search"></i>
+                </button>
+            </div>
 
+        </div>
+    </div>
+</div>
+<hr />
 <table id="tRequerimientos" class="table table-striped" style="width:100%"></table>
+
+
+
 
 
 <div class="modal fade" id="mDetalle" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
