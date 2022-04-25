@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="menu-caret ms-auto"></div>
                                 </div>
-                                <small>@ViewBag.UsuarioLogueado.TipoUsuarioMa</small>
+                                <small>@ViewBag.UsuarioLogueado.NivelUsuario</small>
                             </div>
                         </a>
                     </div>
@@ -141,6 +141,26 @@
                             <div class="menu-text">Inicio</div>
                         </a>
                     </div>
+                    @if (@ViewBag.UsuarioLogueado.TipoUsuarioMa == "1101")
+                    {
+                        <div class="menu-item has-sub menuAdministracion">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Administración</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuAdministracion">
+                                <div class="menu-item @(ViewBag.Modulo == "Usuario" ? "active" : "")">
+                                    <a href='@Url.Content("~/")User/Index' class="menu-link">
+                                        <div class="menu-text">Usuarios</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
 
                     <div class="menu-item has-sub menuTrazabilidad">
                         <a href="javascript:;" class="menu-link">
@@ -227,6 +247,7 @@
     <script src="~/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
     <script src="~/assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
     <script src="~/assets/plugins/parsleyjs/dist/parsley.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="~/Scripts/Layout/Layout.js"></script>
     @RenderSection("Scripts", false/*required*/)

@@ -75,6 +75,7 @@ namespace Web.Controllers
                     NombreCompleto = (string)jusuario["login"][0]["NombreCompleto"],
                     CodEmpresa = (int?)jusuario["login"][0]["CodEmpresa"],
                     TipoUsuarioMa = (string)jusuario["login"][0]["TipoUsuarioMa"],
+                    NivelUsuario = (string)jusuario["login"][0]["NivelUsuario"],
                     Activo = (bool)jusuario["login"][0]["Activo"],
                     ActivoLogueo = (bool)jusuario["login"][0]["ActivoLogueo"],
                     CodUsuarioIngreso = (int?)jusuario["login"][0]["CodUsuarioIngreso"],
@@ -84,8 +85,10 @@ namespace Web.Controllers
                     Token = (string)jusuario["token"]
                 };
 
-                var contrasena = (string)jusuario["login"][0]["Clave"];
+                string contrasena = (string)jusuario["login"][0]["Clave"];
                 string pswd = Encryptor.Encriptar(login.Contrasena.Trim());
+
+                //string desecn = Encryptor.Desencriptar(contrasena);
                 if (contrasena != pswd)
                 {
                     throw new Exception("Contraseña incorrecta");

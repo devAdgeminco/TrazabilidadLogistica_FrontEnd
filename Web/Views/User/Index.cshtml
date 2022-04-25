@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Administracion";
+    ViewBag.Modulo = "Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var url_usuarios = "@Url.Content("~/")" + "User/Index";
+    var url_getUsuarios = "@Url.Content("~/")" + "User/getUsers";
+    var url_GetUserForm = "@Url.Content("~/")" + "User/GetUserForm";
+    var url_InsertUser = "@Url.Content("~/")" + "User/InsertUser";
+    var url_UpdateUser = "@Url.Content("~/")" + "User/UpdateUser";
+    var url_DeleteUser = "@Url.Content("~/")" + "User/DeleteUser";
+    var url_UpdatePswdUser = "@Url.Content("~/")" + "User/UpdatePswdUser";
+    var url_getCompanies = "@Url.Content("~/")" + "Login/GetCompanies";
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <div class="">
+                <button id="btnAgregar" type="button" class="form-control btn btn-primary" data-bs-toggle="modal" data-bs-target="#mUsuarios">
+                    Nuevo Usuario
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+<table id="tUsuarios" class="table table-striped" style="width:100%"></table>
+
+<div class="modal fade" id="mUsuarios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="Usuario" class="form-label">Usuario</label>
+                        <input id="codUsuario" name="prodId" type="hidden" value="">
+                        <input type="text" class="form-control form-control-sm" id="Usuario" placeholder="Usuario" autocomplete="off">
+                    </div>
+                    <div class="col mb-3">
+                        <div id="divContrasena">
+                            <label for="Contrasena" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control form-control-sm" id="Contrasena" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="Nombres" class="form-label">Nombres</label>
+                        <input type="text" class="form-control form-control-sm" id="Nombres" placeholder="Nombres" autocomplete="off">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="Apellidos" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control form-control-sm" id="Apellidos" autocomplete="off">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="Empresa" class="form-label">Empresa</label>
+                        <select id="Empresa" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        </select>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="Perfil" class="form-label">Perfil</label>
+                        <select id="Perfil" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                            <option value="1101">Administrador</option>
+                            <option value="1102">Colaborador</option>
+                            <option value="1103">Contador</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnGuardar" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mContrasena" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloModal"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="contrasenaChange" class="form-label">Contraseña Nueva</label>
+                    <input id="codUsuarioContrasena" name="prodId" type="hidden" value="">
+                    <input type="password" class="form-control" id="contrasenaChange">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnGuardarContrasena" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Portal/Usuarios.js")"></script>
+}

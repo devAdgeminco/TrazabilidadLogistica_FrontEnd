@@ -18,6 +18,7 @@ namespace Web.Models.Seguridad
             public string NombreCompleto { get; set; }
             public int? CodEmpresa { get; set; }
             public string TipoUsuarioMa { get; set; }
+            public string NivelUsuario { get; set; }
             public string Clave { get; set; }
             public bool Activo { get; set; }
             public bool ActivoLogueo { get; set; }

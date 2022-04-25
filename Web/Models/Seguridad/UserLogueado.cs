@@ -15,6 +15,7 @@ namespace Web.Models.Seguridad
         public string NombreCompleto { get; set; }
         public int? CodEmpresa { get; set; }
         public string TipoUsuarioMa { get; set; }
+        public string NivelUsuario { get; set; }
         public bool Activo { get; set; }
         public bool ActivoLogueo { get; set; }
         public int? CodUsuarioIngreso { get; set; }
@@ -35,6 +36,7 @@ namespace Web.Models.Seguridad
                 NombreCompleto = (string)jusuario[nameof(NombreCompleto)],
                 CodEmpresa = (int?)jusuario[nameof(CodEmpresa)],
                 TipoUsuarioMa = (string)jusuario[nameof(TipoUsuarioMa)],
+                NivelUsuario = (string)jusuario[nameof(NivelUsuario)],
                 Activo = (bool)jusuario[nameof(Activo)],
                 ActivoLogueo = (bool)jusuario[nameof(ActivoLogueo)],
                 CodUsuarioIngreso = (int?)jusuario[nameof(CodUsuarioIngreso)],
