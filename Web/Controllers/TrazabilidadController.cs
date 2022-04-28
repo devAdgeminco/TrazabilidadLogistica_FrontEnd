@@ -33,6 +33,11 @@ namespace Web.Controllers
             return View();
         }
 
+        public IActionResult Trazabilidad()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> getRequerimientos(DateTime fecIni, DateTime fecFin)
         {
             try
@@ -50,6 +55,20 @@ namespace Web.Controllers
                 var response = await httpClient.PostAsync(api + "Requerimiento/getRequerimientos", httpContent);
                 var data = await response.Content.ReadAsStringAsync();
 
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getRequerimiento(string idReq)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getRequerimiento", new { idReq = idReq });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
@@ -97,6 +116,20 @@ namespace Web.Controllers
             }
         }
 
+        public async Task<IActionResult> getOCompra(string idReq)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getOCompra", new { idReq = idReq });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
         public async Task<IActionResult> getOrdenCompraDetalle(string id)
         {
             try
@@ -128,6 +161,20 @@ namespace Web.Controllers
                 var response = await httpClient.PostAsync(api + "Requerimiento/getPartesEntrada", httpContent);
                 var data = await response.Content.ReadAsStringAsync();
 
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
+        public async Task<IActionResult> getParteEntrada(string idReq)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getParteEntrada", new { idReq = idReq });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)

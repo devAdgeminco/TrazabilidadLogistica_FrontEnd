@@ -82,6 +82,10 @@
                     //console.log(dataSet);
 
                     $('#tRequerimientos').DataTable({
+                        dom: 'lBfrtip',
+                        buttons: [
+                            'excel'
+                        ],
                         destroy: true,
                         data: dataSet,
                         columns: [
