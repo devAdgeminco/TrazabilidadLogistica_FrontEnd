@@ -22,21 +22,27 @@ namespace Web.Controllers
         {
             return View();
         }
-
         public IActionResult OrdenCompra()
         {
             return View();
         }
-
         public IActionResult PartesEntrada()
         {
             return View();
         }
-
+        public IActionResult AlmacenD()
+        {
+            return View();
+        }
+        public IActionResult ValeEntrada()
+        {
+            return View();
+        }
         public IActionResult Trazabilidad()
         {
             return View();
         }
+        
 
         public async Task<IActionResult> getRequerimientos(DateTime fecIni, DateTime fecFin)
         {

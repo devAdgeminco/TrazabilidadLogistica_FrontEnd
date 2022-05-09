@@ -114,26 +114,26 @@
                         </a>
                     </div>
                     @*<div id="appSidebarProfileMenu" class="collapse">
-                            <div class="menu-item pt-5px">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-cog"></i></div>
-                                    <div class="menu-text">Settings</div>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-                                    <div class="menu-text"> Send Feedback</div>
-                                </a>
-                            </div>
-                            <div class="menu-item pb-5px">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
-                                    <div class="menu-text"> Helps</div>
-                                </a>
-                            </div>
-                            <div class="menu-divider m-0"></div>
-                        </div>*@
+            <div class="menu-item pt-5px">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-cog"></i></div>
+                    <div class="menu-text">Settings</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
+                    <div class="menu-text"> Send Feedback</div>
+                </a>
+            </div>
+            <div class="menu-item pb-5px">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
+                    <div class="menu-text"> Helps</div>
+                </a>
+            </div>
+            <div class="menu-divider m-0"></div>
+        </div>*@
                     <div class="menu-header">Menu</div>
                     <div class="menu-item @(ViewBag.Modulo == "Inicio" ? "active" : "")">
                         <a href='@Url.Content("~/")Home/Index' class="menu-link">
@@ -191,6 +191,43 @@
                             <div class="menu-item @(ViewBag.Modulo == "PartesEntrada" ? "active" : "")">
                                 <a href='@Url.Content("~/")Trazabilidad/PartesEntrada' class="menu-link">
                                     <div class="menu-text">Ingreso Almacén T</div>
+                                </a>
+                            </div>
+                            <div class="menu-item @(ViewBag.Modulo == "AlmacenD" ? "active" : "")">
+                                <a href='@Url.Content("~/")Trazabilidad/AlmacenD' class="menu-link">
+                                    <div class="menu-text">Ingreso Almacén D</div>
+                                </a>
+                            </div>
+                            <div class="menu-item @(ViewBag.Modulo == "ValeEntrada" ? "active" : "")">
+                                <a href='@Url.Content("~/")Trazabilidad/ValeEntrada' class="menu-link">
+                                    <div class="menu-text">Vale Entrega</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item has-sub menuCodigoBarras">
+                        <a href="javascript:;" class="menu-link">
+                            <div class="menu-icon">
+                                <i class="fa fa-align-left"></i>
+                            </div>
+                            <div class="menu-text">Codigo de Barras</div>
+                            <div class="menu-caret"></div>
+                        </a>
+                        <div class="menu-submenu submenuCodigoBarras">
+                            <div class="menu-item @(ViewBag.Modulo == "ImpresionEtiquetas" ? "active" : "")">
+                                <a href='@Url.Content("~/")CodigoBarras/ImpresionEtiquetas' class="menu-link">
+                                    <div class="menu-text">Impresion de Etiquetas</div>
+                                </a>
+                            </div>
+                            <div class="menu-item @(ViewBag.Modulo == "EscaneoProductos" ? "active" : "")">
+                                <a href='@Url.Content("~/")CodigoBarras/EscaneoProductos' class="menu-link">
+                                    <div class="menu-text">Escaneo de Documentos</div>
+                                </a>
+                            </div>
+                            <div class="menu-item @(ViewBag.Modulo == "Interface" ? "active" : "")">
+                                <a href='@Url.Content("~/")CodigoBarras/Interface' class="menu-link">
+                                    <div class="menu-text">Interface SOFTCOM</div>
                                 </a>
                             </div>
                         </div>
