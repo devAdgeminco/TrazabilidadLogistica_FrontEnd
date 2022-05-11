@@ -98,6 +98,20 @@ namespace Web.Controllers
             }
         }
 
+        public async Task<IActionResult> getTrazabilidadDetalle(string idReq)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getTrazabilidadDetalle", new { idReq = idReq });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
         public async Task<IActionResult> getOrdenCompra(DateTime fecIni, DateTime fecFin)
         {
             try

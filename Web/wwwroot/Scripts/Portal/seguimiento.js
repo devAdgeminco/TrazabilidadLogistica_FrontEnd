@@ -635,7 +635,7 @@
 
                 cache: false,
                 async: true,
-                url: url_getRequerimientoDetalle,
+                url: url_getTrazabilidadDetalle,
                 type: "POST",
                 data: {
                     idReq: idReq
