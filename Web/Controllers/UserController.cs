@@ -37,6 +37,20 @@ namespace Web.Controllers
             }
         }
 
+        public async Task<IActionResult> getPerfiles()
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().GetAsync(api + "User/getPerfiles");
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+
         public async Task<IActionResult> GetUserForm(int CodUsuario)
         {
             try

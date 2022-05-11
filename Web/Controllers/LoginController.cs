@@ -74,6 +74,7 @@ namespace Web.Controllers
                     Apellidos = (string)jusuario["login"][0]["Apellidos"],
                     NombreCompleto = (string)jusuario["login"][0]["NombreCompleto"],
                     CodEmpresa = (int?)jusuario["login"][0]["CodEmpresa"],
+                    RazonSocial = (string)jusuario["login"][0]["RazonSocial"],
                     TipoUsuarioMa = (string)jusuario["login"][0]["TipoUsuarioMa"],
                     NivelUsuario = (string)jusuario["login"][0]["NivelUsuario"],
                     Activo = (bool)jusuario["login"][0]["Activo"],
@@ -82,6 +83,8 @@ namespace Web.Controllers
                     FechaIngreso = (DateTime?)jusuario["login"][0]["FechaIngreso"],
                     CodUsuarioActualizacion = (int?)jusuario["login"][0]["CodUsuarioActualizacion"],
                     FechaActualizacion = (DateTime?)jusuario["login"][0]["FechaActualizacion"],
+                    IdPerfil = (int)jusuario["login"][0]["IdPerfil"],
+                    Perfil = (string)jusuario["login"][0]["Perfil"],
                     Token = (string)jusuario["token"]
                 };
 
@@ -140,6 +143,21 @@ namespace Web.Controllers
                 return BadRequest(new { value = ex.Message, status = false });
             }
             
+        }
+
+        public async Task<IActionResult> GetModulos(int CodUsuario)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "User/getModulos", new { CodUsuario = CodUsuario });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+
         }
     }
 }

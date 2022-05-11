@@ -14,6 +14,7 @@
     var url_DeleteUser = "@Url.Content("~/")" + "User/DeleteUser";
     var url_UpdatePswdUser = "@Url.Content("~/")" + "User/UpdatePswdUser";
     var url_getCompanies = "@Url.Content("~/")" + "Login/GetCompanies";
+    var url_getPerfiles = "@Url.Content("~/")" + "User/getPerfiles";
 </script>
 
 <div class="container-fluid">
@@ -71,9 +72,9 @@
                     <div class="col mb-3">
                         <label for="Perfil" class="form-label">Perfil</label>
                         <select id="Perfil" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option value="1101">Administrador</option>
+                            @*<option value="1101">Administrador</option>
                             <option value="1102">Colaborador</option>
-                            <option value="1103">Contador</option>
+                            <option value="1103">Contador</option>*@
                         </select>
                     </div>
                 </div>

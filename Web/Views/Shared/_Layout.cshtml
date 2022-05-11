@@ -72,7 +72,7 @@
                         <div class="image image-icon bg-gray-800 text-gray-600">
                             <i class="fa fa-user"></i>
                         </div>
-                        <span class="d-none d-md-inline">@ViewBag.UsuarioLogueado.NombreCompleto</span> <b class="caret ms-10px"></b>
+                        <span class="d-none d-md-inline"></span> <b class="caret ms-10px"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end me-1">
                         @*<a href="javascript:;" class="dropdown-item">Edit Profile</a>
@@ -106,10 +106,12 @@
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
                                         @ViewBag.UsuarioLogueado.NombreCompleto
+                                        <small>@ViewBag.UsuarioLogueado.RazonSocial</small>
+                                        <small>@ViewBag.UsuarioLogueado.Perfil</small>
                                     </div>
                                     <div class="menu-caret ms-auto"></div>
                                 </div>
-                                <small>@ViewBag.UsuarioLogueado.NivelUsuario</small>
+                                
                             </div>
                         </a>
                     </div>
@@ -143,7 +145,7 @@
                             <div class="menu-text">Inicio</div>
                         </a>
                     </div>
-                    @if (@ViewBag.UsuarioLogueado.TipoUsuarioMa == "1101")
+                    @if (@ViewBag.UsuarioLogueado.IdPerfil == 1)
                     {
                         <div class="menu-item has-sub menuAdministracion">
                             <a href="javascript:;" class="menu-link">
@@ -161,77 +163,147 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="menu-item has-sub menuTrazabilidad">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Logística</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuTrazabilidad">
+                                <div class="menu-item @(ViewBag.Modulo == "Trazabilidad" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/Trazabilidad' class="menu-link">
+                                        <div class="menu-text">Trazabilidad</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "Requerimientos" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/Index' class="menu-link">
+                                        <div class="menu-text">Requerimientos</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "OrdenCompra" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/OrdenCompra' class="menu-link">
+                                        <div class="menu-text">Orden de Compra</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "PartesEntrada" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/PartesEntrada' class="menu-link">
+                                        <div class="menu-text">Ingreso Almacén T</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "AlmacenD" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/AlmacenD' class="menu-link">
+                                        <div class="menu-text">Ingreso Almacén D</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "ValeEntrada" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/ValeEntrada' class="menu-link">
+                                        <div class="menu-text">Vale Entrega</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item has-sub menuCodigoBarras">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Codigo de Barras</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuCodigoBarras">
+                                <div class="menu-item @(ViewBag.Modulo == "ImpresionEtiquetas" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/ImpresionEtiquetas' class="menu-link">
+                                        <div class="menu-text">Impresion de Etiquetas</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "EscaneoProductos" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/EscaneoProductos' class="menu-link">
+                                        <div class="menu-text">Escaneo de Documentos</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "Interface" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/Interface' class="menu-link">
+                                        <div class="menu-text">Interface SOFTCOM</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     }
 
-
-                    <div class="menu-item has-sub menuTrazabilidad">
-                        <a href="javascript:;" class="menu-link">
-                            <div class="menu-icon">
-                                <i class="fa fa-align-left"></i>
-                            </div>
-                            <div class="menu-text">Logística</div>
-                            <div class="menu-caret"></div>
-                        </a>
-                        <div class="menu-submenu submenuTrazabilidad">
-                            <div class="menu-item @(ViewBag.Modulo == "Trazabilidad" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/Trazabilidad' class="menu-link">
-                                    <div class="menu-text">Trazabilidad</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "Requerimientos" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/Index' class="menu-link">
-                                    <div class="menu-text">Requerimientos</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "OrdenCompra" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/OrdenCompra' class="menu-link">
-                                    <div class="menu-text">Orden de Compra</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "PartesEntrada" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/PartesEntrada' class="menu-link">
-                                    <div class="menu-text">Ingreso Almacén T</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "AlmacenD" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/AlmacenD' class="menu-link">
-                                    <div class="menu-text">Ingreso Almacén D</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "ValeEntrada" ? "active" : "")">
-                                <a href='@Url.Content("~/")Trazabilidad/ValeEntrada' class="menu-link">
-                                    <div class="menu-text">Vale Entrega</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="menu-item has-sub menuCodigoBarras">
-                        <a href="javascript:;" class="menu-link">
-                            <div class="menu-icon">
-                                <i class="fa fa-align-left"></i>
-                            </div>
-                            <div class="menu-text">Codigo de Barras</div>
-                            <div class="menu-caret"></div>
-                        </a>
-                        <div class="menu-submenu submenuCodigoBarras">
-                            <div class="menu-item @(ViewBag.Modulo == "ImpresionEtiquetas" ? "active" : "")">
-                                <a href='@Url.Content("~/")CodigoBarras/ImpresionEtiquetas' class="menu-link">
-                                    <div class="menu-text">Impresion de Etiquetas</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "EscaneoProductos" ? "active" : "")">
-                                <a href='@Url.Content("~/")CodigoBarras/EscaneoProductos' class="menu-link">
-                                    <div class="menu-text">Escaneo de Documentos</div>
-                                </a>
-                            </div>
-                            <div class="menu-item @(ViewBag.Modulo == "Interface" ? "active" : "")">
-                                <a href='@Url.Content("~/")CodigoBarras/Interface' class="menu-link">
-                                    <div class="menu-text">Interface SOFTCOM</div>
-                                </a>
+                    @if (@ViewBag.UsuarioLogueado.IdPerfil == 2)
+                    {
+                        <div class="menu-item has-sub menuTrazabilidad">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Logística</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuTrazabilidad">
+                                <div class="menu-item @(ViewBag.Modulo == "Trazabilidad" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/Trazabilidad' class="menu-link">
+                                        <div class="menu-text">Trazabilidad</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "Requerimientos" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/Index' class="menu-link">
+                                        <div class="menu-text">Requerimientos</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "OrdenCompra" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/OrdenCompra' class="menu-link">
+                                        <div class="menu-text">Orden de Compra</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "PartesEntrada" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/PartesEntrada' class="menu-link">
+                                        <div class="menu-text">Ingreso Almacén T</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "AlmacenD" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/AlmacenD' class="menu-link">
+                                        <div class="menu-text">Ingreso Almacén D</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "ValeEntrada" ? "active" : "")">
+                                    <a href='@Url.Content("~/")Trazabilidad/ValeEntrada' class="menu-link">
+                                        <div class="menu-text">Vale Entrega</div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="menu-item has-sub menuCodigoBarras">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Codigo de Barras</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuCodigoBarras">
+                                <div class="menu-item @(ViewBag.Modulo == "ImpresionEtiquetas" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/ImpresionEtiquetas' class="menu-link">
+                                        <div class="menu-text">Impresion de Etiquetas</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "EscaneoProductos" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/EscaneoProductos' class="menu-link">
+                                        <div class="menu-text">Escaneo de Documentos</div>
+                                    </a>
+                                </div>
+                                <div class="menu-item @(ViewBag.Modulo == "Interface" ? "active" : "")">
+                                    <a href='@Url.Content("~/")CodigoBarras/Interface' class="menu-link">
+                                        <div class="menu-text">Interface SOFTCOM</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
 
                     <!-- BEGIN minify-button -->
                     <div class="menu-item d-flex">

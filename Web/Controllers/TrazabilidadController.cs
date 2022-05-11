@@ -55,6 +55,7 @@ namespace Web.Controllers
 
                 queries.Add(new KeyValuePair<string, string>("fecIni", fecIni.ToString()));
                 queries.Add(new KeyValuePair<string, string>("fecFin", fecFin.ToString()));
+                queries.Add(new KeyValuePair<string, string>("empresa", UsuarioLogueado.CodEmpresa.ToString()));
 
                 HttpContent httpContent = new FormUrlEncodedContent(queries);
 
@@ -74,7 +75,7 @@ namespace Web.Controllers
             try
             {
                 var api = _configuration["Api:root"];
-                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getRequerimiento", new { idReq = idReq });
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getRequerimiento", new { idReq = idReq, empresa = UsuarioLogueado.CodEmpresa });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
@@ -108,6 +109,7 @@ namespace Web.Controllers
 
                 queries.Add(new KeyValuePair<string, string>("fecIni", fecIni.ToString()));
                 queries.Add(new KeyValuePair<string, string>("fecFin", fecFin.ToString()));
+                queries.Add(new KeyValuePair<string, string>("empresa", UsuarioLogueado.CodEmpresa.ToString()));
 
                 HttpContent httpContent = new FormUrlEncodedContent(queries);
 
@@ -127,7 +129,7 @@ namespace Web.Controllers
             try
             {
                 var api = _configuration["Api:root"];
-                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getOCompra", new { idReq = idReq });
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getOCompra", new { idReq = idReq, empresa = UsuarioLogueado.CodEmpresa });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
@@ -161,6 +163,7 @@ namespace Web.Controllers
 
                 queries.Add(new KeyValuePair<string, string>("fecIni", fecIni.ToString()));
                 queries.Add(new KeyValuePair<string, string>("fecFin", fecFin.ToString()));
+                queries.Add(new KeyValuePair<string, string>("empresa", UsuarioLogueado.CodEmpresa.ToString()));
 
                 HttpContent httpContent = new FormUrlEncodedContent(queries);
 
@@ -180,7 +183,7 @@ namespace Web.Controllers
             try
             {
                 var api = _configuration["Api:root"];
-                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getParteEntrada", new { idReq = idReq });
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getParteEntrada", new { idReq = idReq, empresa = UsuarioLogueado.CodEmpresa });
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
