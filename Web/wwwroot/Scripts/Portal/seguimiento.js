@@ -12,6 +12,7 @@
                 dsh.GetRequerimiento();
                 dsh.GetOrdenCompra();
                 dsh.GetPartesEntrada();
+                dsh.GetDetalle();
             });
 
             document.getElementById("cReq").style.display = "none";
@@ -378,7 +379,7 @@
                                 }
                             });
                         } else {
-                            $('#tOC').DataTable();
+                            //$('#tOC').DataTable();
                         }
                     }
                     
@@ -545,7 +546,7 @@
                                 }
                             });
                         } else {
-                            $('#tPE').DataTable();
+                            //$('#tPE').DataTable();
                         }
                     }
                 },
@@ -619,6 +620,93 @@
 
                     //$('#tRequerimientos').DataTable().destroy();
                     //$('#tRequerimientos').DataTable();
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        },
+
+        GetDetalle() {
+
+            let idReq = $('#Req').val();
+
+            $.ajax({
+
+                cache: false,
+                async: true,
+                url: url_getRequerimiento,
+                type: "GET",
+                data: {
+                    idReq: idReq
+                },
+                datatype: false,
+                contentType: false,
+                success: function (data) {
+                    if (data.status) {
+                        var ls = JSON.parse(data.value).requerimiento;
+                        if (ls.length > 0) {
+                            $('.uno').removeClass('disabled');
+                            $('.uno').addClass('completed');
+                            dataSetReq = [];
+                            for (var i = 0; i < ls.length; i++) {
+                                dataSetReq.push([ls[i].RC_CNROREQ,
+                                dsh.getDate(ls[i].RC_DFECREQ),
+                                ls[i].RC_PRIOR,
+                                ls[i].TG_CDESCRI,
+                                dsh.getDate(ls[i].RC_DFECA01),
+                                ls[i].RC_CNUMORD,
+                                '<button type="button" dataId="' + ls[i].RC_CNROREQ + '" class="btn btn-primary btn-xs getDetalle" data-bs-toggle="modal" data-bs-target="#mDetalle"><i class="fas fa-book fa-sm"></i></button>'
+                                ]);
+                            }
+                            //console.log('dataSet');
+                            //console.log(dataSet);
+
+                            $('#tDetalle').DataTable({
+                                destroy: true,
+                                data: dataSetReq,
+                                columns: [
+                                    { title: "Nº" },
+                                    { title: "Fecha" },
+                                    { title: "Prioridad" },
+                                    { title: "Estado" },
+                                    { title: "Fecha Estado" },
+                                    { title: "Nº OC" },
+                                    { title: "" }
+                                ],
+                                "order": [[0, "desc"]],
+                                language: {
+                                    "processing": "Procesando...",
+                                    "lengthMenu": "Mostrar _MENU_ registros",
+                                    "zeroRecords": "No se encontraron resultados",
+                                    "emptyTable": "Ningún dato disponible en esta tabla",
+                                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "search": "Buscar:",
+                                    "infoThousands": ",",
+                                    "loadingRecords": "Cargando...",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Último",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    },
+                                    "aria": {
+                                        "sortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                        "sortDescending": ": Activar para ordenar la columna de manera descendente"
+                                    },
+                                    "emptyTable": "No hay datos disponibles en la tabla",
+                                    "zeroRecords": "No se encontraron coincidencias",
+                                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                                    "infoFiltered": "(Filtrado de _MAX_ total de entradas)",
+                                    "lengthMenu": "Mostrar _MENU_ entradas",
+                                }
+                            });
+                        } else {
+                            //$('#tRequerimientos').DataTable();
+                        }
+                    }
                 },
                 error: function () {
                     console.log("Error");
