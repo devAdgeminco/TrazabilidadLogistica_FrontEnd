@@ -31,14 +31,27 @@ namespace Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> getProductoCB(string id)
+        public async Task<IActionResult> getBarraCodigoOC(string id)
         {
             try
             {
                 var api = _configuration["Api:root"];
-                var productos = await new HttpRestClientServices<string>().PostAsync(api + "Requerimiento/getOrdenCompraDetalle", new { id = id });
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "CodigoBarras/getBarraCodigoOC", new { idReq = id, empresa = UsuarioLogueado.CodEmpresa });
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
 
-                return Ok(new { value = productos, status = true });
+        public async Task<IActionResult> getBarraCodigoOCD(string id)
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().PostAsync(api + "CodigoBarras/getBarraCodigoOCD", new { idReq = id, empresa = UsuarioLogueado.CodEmpresa });
+                return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
             {
