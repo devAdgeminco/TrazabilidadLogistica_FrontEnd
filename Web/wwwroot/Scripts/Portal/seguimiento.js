@@ -643,18 +643,22 @@
                 success: function (data) {
                     console.log(data.value);
 
-                    var ls = JSON.parse(data.value).requerimientoDetalle;
+                    var ls = JSON.parse(data.value).trazabilidadDetalle;
 
                     //console.log(ls);
                     dataSet = [];
                     for (var i = 0; i < ls.length; i++) {
-                        dataSet.push([ls[i].RD_CNROREQ,
+                        dataSet.push([
+                        //ls[i].RD_CNROREQ,
                         ls[i].RD_CITEM,
                         ls[i].RD_CCODIGO,
                         ls[i].RD_CDESCRI,
                         ls[i].RD_CUNID,
                         ls[i].RD_NQPEDI,
-                        ls[i].RD_CCENCOS
+                            ls[i].OC_CNUMORD,
+                            ls[i].OC_DFECENT,
+                            ls[i].C6_CNUMDOC,
+                            ls[i].C6_DFECDOC
                         ]);
                     }
                     //console.log('dataSet');
@@ -664,13 +668,16 @@
                         destroy: true,
                         data: dataSet,
                         columns: [
-                            { title: "Nº Req" },
+                            //{ title: "Nº Req" },
                             { title: "Item" },
                             { title: "Codigo" },
                             { title: "Descripcion" },
                             { title: "UN" },
-                            { title: "QPEDI" },
-                            { title: "CENCOS" }
+                            { title: "CANT" },
+                            { title: "OCompra" },
+                            { title: "Fecha OC" },
+                            { title: "AlmacenT" },
+                            { title: "Fecha Alm" }
                         ],
                         language: {
                             "processing": "Procesando...",
