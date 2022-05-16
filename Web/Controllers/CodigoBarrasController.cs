@@ -58,5 +58,9 @@ namespace Web.Controllers
                 return BadRequest(new { value = ex.Message, status = false });
             }
         }
+
+        public async Task<IActionResult> getPDF() {
+            
+        }
     }
 }

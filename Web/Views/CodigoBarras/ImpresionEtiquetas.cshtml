@@ -32,17 +32,23 @@
                     <i class="ion ion-md-search"></i>
                 </button>
             </div>
-
         </div>
     </div>
 </div>
 <br />
-<div id="cOC" class="card">
+<div id="cOCDPrint" class="card invisible" style="border: none !important;">
+    <div class="card-body" style="text-align: right;padding: 0px;">
+        <button type="button" class="btn">
+            <img src="~/assets/img/download-pdf.png" width="38" height="38" />
+        </button>
+    </div>
+</div>
+<div id="cOC" class="card invisible">
     <div class="card-body">
         <table id="tOC" class="table table-striped" style="width:100%"></table>
     </div>
 </div>
-<div id="cOCD" class="card">
+<div id="cOCD" class="card invisible">
     <div class="card-body">
         <table id="tOCD" class="table table-hover" style="width:100%">
             <thead>
@@ -56,7 +62,11 @@
             </thead>
             <tbody id="tBody_OCD"></tbody>
         </table>
-
+        <div class="card-body">
+            <button type="button" class="btn">
+                <i class="ion ion-md-print"></i>
+            </button>
+        </div>
     </div>
 </div>
 
