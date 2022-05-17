@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj": {}
+    "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj": {
+    "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
+        "projectUniqueName": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
         "projectName": "Web",
-        "projectPath": "C:\\GitHub\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
-        "packagesPath": "C:\\Users\\admindra\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\TrazabilidadLogistica_FrontEnd\\Web\\obj\\",
+        "projectPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\Luan\\.nuget\\packages\\",
+        "outputPath": "E:\\Dev\\Adgeminco\\Trazabilidad Logistica\\FrontEnd\\TrazabilidadLogistica_FrontEnd\\Web\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\admindra\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Luan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -13,8 +13,8 @@
 </script>
 <style>
     .barcode {
-        font-family: 'Libre Barcode 39';
-        font-size: 22px;
+        font-family: 'Libre Barcode 128';
+        font-size: 100px;
     }
 </style>
 <div class="container-fluid">
@@ -36,35 +36,37 @@
     </div>
 </div>
 <br />
-<div id="cOCDPrint" class="card invisible" style="border: none !important;">
+<div id="cOCDPrint" class="card" style="border: none !important;">
     <div class="card-body" style="text-align: right;padding: 0px;">
         <button type="button" class="btn">
             <img src="~/assets/img/download-pdf.png" width="38" height="38" />
         </button>
     </div>
 </div>
-<div id="cOC" class="card invisible">
+
+<div id="cOC" class="card">
     <div class="card-body">
+        <h5 class="card-title">Orden de Compra</h5>
         <table id="tOC" class="table table-striped" style="width:100%"></table>
     </div>
 </div>
-<div id="cOCD" class="card invisible">
+<div id="cOCD" class="card">
     <div class="card-body">
-        <table id="tOCD" class="table table-hover" style="width:100%">
+        <h5 class="card-title">Detalle de Orden Compra</h5>
+        <table id="tOCD" class="table table-hover offset-2" style="width:60%;text-align: center;">
             <thead>
                 <tr>
-                    <td>Codigo</td>
-                    <td>Producto</td>
-                    <td>Codigo Barras</td>
-                    <td style="width: 100px;">Cantidad</td>
-                    <td>Accion</td>
+                    <td>Codigo de Barras</td>
+                    <td>Descripción de Producto</td>
+                    <td style="width: 100px;">Cantidad de Etiquetas</td>
+                    <td>Imprimir</td>
                 </tr>
             </thead>
             <tbody id="tBody_OCD"></tbody>
         </table>
-        <div class="card-body">
-            <button type="button" class="btn">
-                <i class="ion ion-md-print"></i>
+        <div">
+            <button type="button" class="btn btn-outline-info">
+                <i class="ion ion-md-print" style="font-size:22px"></i>
             </button>
         </div>
     </div>

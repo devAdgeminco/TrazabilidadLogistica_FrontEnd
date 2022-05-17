@@ -1,8 +1,6 @@
 ﻿using iTextSharp.text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace Web.Helper.Portal
 {
@@ -10,7 +8,7 @@ namespace Web.Helper.Portal
     {
         public static string getPDF()
         {
-            Document doc = new Document(PageSize.LETTER);
+            Document doc = new Document(PageSize.A4);
             // Indicamos donde vamos a guardar el documento
             PdfWriter writer = PdfWriter.GetInstance(doc,
                                         new FileStream(@"C:\prueba.pdf", FileMode.Create));
@@ -22,7 +20,7 @@ namespace Web.Helper.Portal
 
             // Abrimos el archivo
             doc.Open();
-            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            Font _standardFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, BaseColor.BLACK);
 
             // Escribimos el encabezamiento en el documento
             doc.Add(new Paragraph("Mi primer documento PDF"));
@@ -70,6 +68,8 @@ namespace Web.Helper.Portal
 
             doc.Close();
             writer.Close();
+
+            return "";
         }
     }
 }

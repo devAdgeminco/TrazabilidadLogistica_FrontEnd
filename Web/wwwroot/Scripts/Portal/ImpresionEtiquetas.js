@@ -10,9 +10,15 @@ $(document).ready(function () {
             $(".menuCodigoBarras").addClass("expand");
             $(".submenuCodigoBarras").css("display", "block");
 
+            document.getElementById("cOCDPrint").style.display = "none";
+            document.getElementById("cOC").style.display = "none";
+            document.getElementById("cOCD").style.display = "none";
+
             $(document).on("click", "#btnBuscar", function () {
                 dsh.getBarraCodigoOC();
             });
+
+            
         },
 
         sumarDias(fecha, dias) {
@@ -66,6 +72,9 @@ $(document).ready(function () {
                     if (data.status) {
                         var ls = JSON.parse(data.value).codigoBarrasOC;
                         if (ls.length > 0) {
+                            document.getElementById("cOCDPrint").style.display = "block";
+                            document.getElementById("cOC").style.display = "block";
+                            
                             dataSetReq = [];
                             for (var i = 0; i < ls.length; i++) {
                                 dataSetReq.push([
@@ -173,26 +182,61 @@ $(document).ready(function () {
                     if (data.status) {
                         var ls = JSON.parse(data.value).codigoBarrasOCD;
                         if (ls.length > 0) {
+                            document.getElementById("cOCD").style.display = "block";
                             var html = '';
                             for (var i = 0; i < ls.length; i++) {
                                 var fil = ls[i];
                                 var tr = '';
-                                tr += '<tr>';
-                                tr += '<td data="' + fil.CODIGO + '">' + fil.CODIGO + '</td>';
+                                tr += '<tr style="vertical-align: middle;">';
+                                tr += '<td id="' + fil.CODIGO + fil.ITEM + '"></td>';
                                 tr += '<td>' + fil.DETALLEPROD + '</td>';
-                                tr += '<td class="barcode">' + fil.CODIGO + '</td>';
                                 tr += '<td><input class="form-control form-control-sm" type="number" value="0"></td>';
+                                tr += '<td><button type="button" class="btn btn-outline-info"><i class="ion ion-md-print" style="font-size:22px"></i></button></td>';
                                 tr += '</tr>';
 
                                 html += tr;
                             }
 
+
+
                             $('#tBody_OCD').html(html);
 
-                            //var idx = table.cell('.selected', 0).index();
-                            //var data = table.rows(idx.row).data();
-                            //console.log(data);
+                            for (var i = 0; i < ls.length; i++) {
+                                var fil = ls[i];
 
+                                const container = document.querySelector("[id='" + fil.CODIGO + fil.ITEM + "']");
+
+                                const elemento = document.createElement("img");
+                                elemento.dataset.format = "CODE128";
+                                elemento.dataset.value = fil.CODIGO;
+                                //elemento.dataset.text = fil.CODIGO;
+                                elemento.setAttribute('width',"250px");
+                                elemento.classList.add("codigo");
+                                
+                                container.appendChild(elemento);
+                                
+                            }
+
+                            JsBarcode(".codigo")
+                                .options({
+                                    //format: "CODE128",// El formato
+                                    //width: 2, // La anchura de cada barra
+                                    //height: 30, // La altura del código
+                                    displayValue: false, // ¿Mostrar el valor (como texto) del código de barras?
+                                    //text: "Hola", // Texto (no código) que acompaña al barcode
+                                    //fontOptions: "bold", // Opciones de la fuente del texto del barcode
+                                    //textAlign: "left", // En dónde poner el texto. center, left o right
+                                    //textPosition: "top", // Poner el texto arriba (top) o abajo (bottom)
+                                    //textMargin: 10, // Margen entre el texto y el código de barras
+                                    //fontSize: 8, // Tamaño de la fuente
+                                    //background: "#8bc34a", // Color de fondo
+                                    //lineColor: "#FF0000", // Color de cada barra
+                                    //marginTop: 10, // Margen superior
+                                    //marginRight: 10, // Margen derecho
+                                    //marginBottom: 5, // Margen inferior
+                                    //marginLeft: 35, // Margen izquierdo
+                                })
+                                .init();
 
 
                         } else {

@@ -615,3 +615,5 @@ C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.csproj.
 C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.dll
 C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.pdb
 C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.genruntimeconfig.cache
+E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\bin\Debug\netcoreapp3.1\itextsharp.dll
