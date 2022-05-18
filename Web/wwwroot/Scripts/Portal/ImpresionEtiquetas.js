@@ -18,6 +18,10 @@ $(document).ready(function () {
                 dsh.getBarraCodigoOC();
             });
 
+            $(document).on("click", "#PDF", function () {
+                dsh.getPDF();
+            });
+
             
         },
 
@@ -250,6 +254,22 @@ $(document).ready(function () {
             });
         },
 
+        getPDF() {
+            let id = $('#Req').val()
+
+
+            fetch(url_getPDF, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: id })
+            }).then(function (resp) {
+                return resp.blob();
+            }).then(function (blob) {
+                download(blob,"OrdenCompra");
+            });
+        },
     };
 
 

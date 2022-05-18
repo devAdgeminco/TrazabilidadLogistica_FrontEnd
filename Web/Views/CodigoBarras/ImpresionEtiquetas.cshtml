@@ -10,6 +10,7 @@
 <script>
     var url_getBarraCodigoOC = "@Url.Content("~/")" + "CodigoBarras/getBarraCodigoOC";
     var url_getBarraCodigoOCD = "@Url.Content("~/")" + "CodigoBarras/getBarraCodigoOCD";
+    var url_getPDF = "@Url.Content("~/")" + "CodigoBarras/getPDF";
 </script>
 <style>
     .barcode {
@@ -38,7 +39,7 @@
 <br />
 <div id="cOCDPrint" class="card" style="border: none !important;">
     <div class="card-body" style="text-align: right;padding: 0px;">
-        <button type="button" class="btn">
+        <button type="button" class="btn" id="PDF">
             <img src="~/assets/img/download-pdf.png" width="38" height="38" />
         </button>
     </div>
