@@ -25,8 +25,6 @@ namespace Web.Controllers
 
         private readonly IConfiguration _configuration;
 
-        public object DatetimeHelper { get; private set; }
-
         public LoginController(IConfiguration configuration)
         {
             _configuration = configuration;

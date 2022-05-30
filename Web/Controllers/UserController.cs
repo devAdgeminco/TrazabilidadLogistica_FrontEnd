@@ -23,12 +23,30 @@ namespace Web.Controllers
         {
             return View();
         }
+
+        public IActionResult UsuariosAgenda()
+        {
+            return View();
+        }
         public async Task<IActionResult> getUsers()
         {
             try
             {
                 var api = _configuration["Api:root"];
                 var data = await new HttpRestClientServices<string>().GetAsync(api + "User/users");
+                return Ok(new { value = data, status = true });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+        public async Task<IActionResult> getUsersAgenda()
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var data = await new HttpRestClientServices<string>().GetAsync(api + "User/usersAgenda");
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)

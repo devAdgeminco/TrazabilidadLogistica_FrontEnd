@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Administracion";
+    ViewBag.Modulo = "Usuarios Proveedores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var url_usuarios = "@Url.Content("~/")" + "User/Index";
+    var url_getUsersAgenda = "@Url.Content("~/")" + "User/getUsersAgenda";
+</script>
+
+
+<table id="tUsuarios" class="table table-striped" style="width:100%"></table>
+
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Portal/UsuariosAgenda.js")"></script>
+}
