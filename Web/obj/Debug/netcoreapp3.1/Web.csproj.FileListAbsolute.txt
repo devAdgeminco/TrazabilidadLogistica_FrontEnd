@@ -618,3 +618,4 @@ C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Web.genrunt
 E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\bin\Debug\netcoreapp3.1\itextsharp.dll
 E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Razor\Views\User\UsuariosAgenda.cshtml.g.cs
+E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\obj\Debug\netcoreapp3.1\Razor\Views\Proveedor\Index.cshtml.g.cs

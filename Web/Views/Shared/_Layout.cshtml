@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="menu-caret ms-auto"></div>
                                 </div>
-                                
+
                             </div>
                         </a>
                     </div>
@@ -237,6 +237,15 @@
                                     </a>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="menu-item @(ViewBag.Modulo == "Proveedores" ? "active" : "")">
+                            <a href='@Url.Content("~/")Proveedor/Index' class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-sitemap"></i>
+                                </div>
+                                <div class="menu-text">Proveedores</div>
+                            </a>
                         </div>
                     }
 
