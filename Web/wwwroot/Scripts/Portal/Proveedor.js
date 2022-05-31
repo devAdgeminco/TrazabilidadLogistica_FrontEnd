@@ -80,6 +80,9 @@
                             ls[i].nroOrden,
                             dsh.getDate(ls[i].fechaAgenda),
                             ls[i].horaAgenda,
+                            ls[i].RucProv,
+                            ls[i].RazonSocial,
+                            ls[i].DetalleOC,
                             '<div class="row">' +
                                 '<div class="col-8">' +
                                     '<select id="sAprobacion" dataId="' + ls[i].id + '" class="form-select" aria-label="">' +
@@ -103,8 +106,11 @@
                         columns: [
                             { title: "Id" },
                             { title: "Orden Compra" },
-                            { title: "Fecha" },
-                            { title: "Hora" },
+                            { title: "Fecha Programada" },
+                            { title: "Hora Programada" },
+                            { title: "RUC" },
+                            { title: "Razon Social" },
+                            { title: "Detalle OC" },
                             { title: "Acciones", width: "200px" }
                         ],
                         "order": [[1, "asc"]],

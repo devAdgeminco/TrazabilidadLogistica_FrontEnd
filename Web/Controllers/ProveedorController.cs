@@ -27,7 +27,7 @@ namespace Web.Controllers
             try
             {
                 var api = _configuration["Api:root"];
-                var data = await new HttpRestClientServices<string>().GetAsync(api + "Proveedor/getAgendaAll");
+                var data = await new HttpRestClientServices<string>().GetAsync(api + "Proveedor/getAgendaAll" );
                 return Ok(new { value = data, status = true });
             }
             catch (Exception ex)
