@@ -124,26 +124,26 @@
                         </a>
                     </div>
                     @*<div id="appSidebarProfileMenu" class="collapse">
-                            <div class="menu-item pt-5px">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-cog"></i></div>
-                                    <div class="menu-text">Settings</div>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
-                                    <div class="menu-text"> Send Feedback</div>
-                                </a>
-                            </div>
-                            <div class="menu-item pb-5px">
-                                <a href="javascript:;" class="menu-link">
-                                    <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
-                                    <div class="menu-text"> Helps</div>
-                                </a>
-                            </div>
-                            <div class="menu-divider m-0"></div>
-                        </div>*@
+            <div class="menu-item pt-5px">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-cog"></i></div>
+                    <div class="menu-text">Settings</div>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-pencil-alt"></i></div>
+                    <div class="menu-text"> Send Feedback</div>
+                </a>
+            </div>
+            <div class="menu-item pb-5px">
+                <a href="javascript:;" class="menu-link">
+                    <div class="menu-icon"><i class="fa fa-question-circle"></i></div>
+                    <div class="menu-text"> Helps</div>
+                </a>
+            </div>
+            <div class="menu-divider m-0"></div>
+        </div>*@
                     <div class="menu-header">Menu</div>
                     <div class="menu-item @(ViewBag.Modulo == "Inicio" ? "active" : "")">
                         <a href='@Url.Content("~/")Home/Index' class="menu-link">
@@ -242,6 +242,24 @@
                                         <div class="menu-text">Interface SOFTCOM</div>
                                     </a>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item has-sub menuInventario">
+                            <a href="javascript:;" class="menu-link">
+                                <div class="menu-icon">
+                                    <i class="fa fa-align-left"></i>
+                                </div>
+                                <div class="menu-text">Control de Inventario</div>
+                                <div class="menu-caret"></div>
+                            </a>
+                            <div class="menu-submenu submenuInventario">
+                                <div class="menu-item @(ViewBag.Modulo == "Impresion de Etiquetas" ? "active" : "")">
+                                    <a href='@Url.Content("~/")ControlInventario/Index' class="menu-link">
+                                        <div class="menu-text">Impresion de Etiquetas</div>
+                                    </a>
+                                </div>
+                                
                             </div>
                         </div>
 
