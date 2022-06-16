@@ -19,6 +19,60 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Controllers.Security;
 using Web.Models.Portal;
+using System.Runtime.InteropServices;
+
+public class TSCLIB_DLL
+{
+    [DllImport("TSCLIB.dll", EntryPoint = "about")]
+    public static extern int about();
+
+    [DllImport("TSCLIB.dll", EntryPoint = "openport")]
+    public static extern int openport(string printername);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "barcode")]
+    public static extern int barcode(string x, string y, string type,
+                string height, string readable, string rotation,
+                string narrow, string wide, string code);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "clearbuffer")]
+    public static extern int clearbuffer();
+
+    [DllImport("TSCLIB.dll", EntryPoint = "closeport")]
+    public static extern int closeport();
+
+    [DllImport("TSCLIB.dll", EntryPoint = "downloadpcx")]
+    public static extern int downloadpcx(string filename, string image_name);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "formfeed")]
+    public static extern int formfeed();
+
+    [DllImport("TSCLIB.dll", EntryPoint = "nobackfeed")]
+    public static extern int nobackfeed();
+
+    [DllImport("TSCLIB.dll", EntryPoint = "printerfont")]
+    public static extern int printerfont(string x, string y, string fonttype,
+                    string rotation, string xmul, string ymul,
+                    string text);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "printlabel")]
+    public static extern int printlabel(string set, string copy);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "sendcommand")]
+    public static extern int sendcommand(string printercommand);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "setup")]
+    public static extern int setup(string width, string height,
+              string speed, string density,
+              string sensor, string vertical,
+              string offset);
+
+    [DllImport("TSCLIB.dll", EntryPoint = "windowsfont")]
+    public static extern int windowsfont(int x, int y, int fontheight,
+                    int rotation, int fontstyle, int fontunderline,
+                    string szFaceName, string content);
+
+}
+
 
 namespace Web.Controllers
 {
@@ -149,7 +203,6 @@ namespace Web.Controllers
                     _lbody.Add(_body);
                 }
 
-
                 Document doc = new Document(PageSize.A4);
                 doc.SetMargins(36f, 36f, 36f, 36f);
                 MemoryStream ms = new MemoryStream();
@@ -197,7 +250,7 @@ namespace Web.Controllers
                 {
 
                     Barcode128 bc = new Barcode128();
-                    
+
                     bc.CodeType = Barcode128.CODE128;
                     bc.BarHeight = 60f;
                     bc.Size = 11;
@@ -228,6 +281,58 @@ namespace Web.Controllers
 
 
                 return File(ms.ToArray(), "application/pdf");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { value = ex.Message, status = false });
+            }
+        }
+        
+        public async Task<IActionResult> ImprimirEtiquetas()
+        {
+            try
+            {
+                var api = _configuration["Api:root"];
+                var list = await new HttpRestClientServices<string>().GetAsync(api + "CodigoBarras/selectCodigoBarrasTMP");
+
+                JObject jBody = JObject.Parse(list);
+
+                List<CodigoBarras> _lbody = new List<CodigoBarras>();
+
+                for (int i = 0; i < jBody["codigoBarras"].Count(); i++)
+                {
+                    CodigoBarras _body = new CodigoBarras()
+                    {
+                        Codigo = (string)jBody["codigoBarras"][i]["codigo"],
+                        Descripcion = (string)jBody["codigoBarras"][i]["descripcion"],
+                        Almacen = (string)jBody["codigoBarras"][i]["almacen"]
+                    };
+                    _lbody.Add(_body);
+                }
+
+                //for (int i = 0; i < _lbody.Count; i++)
+                //{
+
+                //}
+                TSCLIB_DLL.openport("TSC TE200");                                                   //Open specified printer driver
+                TSCLIB_DLL.setup("108", "25.4", "4", "8", "0", "0", "0");                           //Setup the media size and sensor type info
+                TSCLIB_DLL.clearbuffer();                                                           //Clear image buffer
+                TSCLIB_DLL.sendcommand("DIRECTION 1,0");
+                TSCLIB_DLL.sendcommand("GAP 3 mm,0 mm");
+
+                TSCLIB_DLL.printerfont("30", "20", "2", "0", "1", "1", "TUBO CUADRADO 75x2.00MMx6.00MTS I");       //Drawing printer font
+                TSCLIB_DLL.printerfont("130", "180", "2", "0", "1", "1", "ALMACEN VES");                    //Drawing printer font
+                TSCLIB_DLL.barcode("80", "50", "128", "100", "2", "0", "2", "2", "105-10010018");           //Drawing barcode
+
+                TSCLIB_DLL.printerfont("450", "20", "2", "0", "1", "1", "TUBO CUADRADO 75x2.00MMx6.00MTS D"); //Drawing printer font
+                TSCLIB_DLL.printerfont("550", "180", "2", "0", "1", "1", "ALMACEN VES");                    //Drawing printer font
+                TSCLIB_DLL.barcode("500", "50", "128", "100", "2", "0", "2", "2", "105-10010042");          //Drawing barcode
+
+                TSCLIB_DLL.printlabel("1", "1");
+                TSCLIB_DLL.closeport();
+
+
+                return Ok(true);
             }
             catch (Exception ex)
             {

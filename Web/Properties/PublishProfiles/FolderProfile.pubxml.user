@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>E:\Dev\Adgeminco\Trazabilidad Logistica\FrontEnd\TrazabilidadLogistica_FrontEnd\Web\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
-    <History>True|2022-04-25T18:49:34.6641206Z;</History>
+    <_PublishTargetUrl>C:\GitHub\TrazabilidadLogistica_FrontEnd\Web\bin\Release\netcoreapp3.1\publish\</_PublishTargetUrl>
+    <History>True|2022-06-16T17:37:40.9671592Z;True|2022-06-08T10:51:47.5292046-06:00;True|2022-06-08T10:50:48.5645170-06:00;True|2022-04-25T12:49:34.6641206-06:00;</History>
   </PropertyGroup>
 </Project>

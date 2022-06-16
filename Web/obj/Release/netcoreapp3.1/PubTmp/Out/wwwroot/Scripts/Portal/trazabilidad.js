@@ -82,6 +82,10 @@
                     //console.log(dataSet);
 
                     $('#tRequerimientos').DataTable({
+                        dom: 'lBfrtip',
+                        buttons: [
+                            'excel'
+                        ],
                         destroy: true,
                         data: dataSet,
                         columns: [
@@ -93,6 +97,7 @@
                             { title: "Nº OC" },
                             { title: "Accion" }
                         ],
+                        "order": [[0, "desc"]],
                         language: {
                             "processing": "Procesando...",
                             "lengthMenu": "Mostrar _MENU_ registros",

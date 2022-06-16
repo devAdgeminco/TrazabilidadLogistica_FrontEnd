@@ -64,8 +64,8 @@
             $('#codUsuario').val('');
             $('#Nombres').val('');
             $('#Apellidos').val('');
-            dsh.GetCompanies()
-            $('#Perfil').val(1101);
+            dsh.GetCompanies();
+            dsh.GetPerfiles();
             $('#Contrasena').val('');
         },
 
@@ -214,6 +214,34 @@
                     }
 
                     $("#Empresa").val($("#Empresa option:first").val());
+                },
+                error: function () {
+                    console.log("Error");
+                }
+            });
+        },
+
+        GetPerfiles() {
+            $.ajax({
+
+                cache: false,
+                async: true,
+                url: url_getPerfiles,
+                type: "GET",
+                data: {
+                    //value: "12345"
+                },
+                datatype: false,
+                contentType: false,
+                success: function (data) {
+                    var ls = JSON.parse(data.value).perfiles;
+
+                    $("#Perfil").find('option').remove();
+                    for (var i = 0; i < ls.length; i++) {
+                        $("#Perfil").append("<option value='" + ls[i].IdPerfil + "'> " + ls[i].Descripcion + " </option>");
+                    }
+
+                    $("#Perfil").val($("#Perfil option:first").val());
                 },
                 error: function () {
                     console.log("Error");

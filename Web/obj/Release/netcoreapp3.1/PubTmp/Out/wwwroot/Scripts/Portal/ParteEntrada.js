@@ -106,6 +106,7 @@
                             { title: "Requerimiento" },
                             { title: "Acciones" }
                         ],
+                        "order": [[0, "desc"]],
                         language: {
                             "processing": "Procesando...",
                             "lengthMenu": "Mostrar _MENU_ registros",
